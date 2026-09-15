@@ -8,54 +8,133 @@ except ModuleNotFoundError:
 
         @staticmethod
         def trace(matrix):
-            return sum(matrix[i][i] for i in range(min(len(matrix), len(matrix[0]))))
+            return sum(matrix[i][i] for i in range(len(matrix)))
+
+        @staticmethod
+        def add(a, b):
+            return [[a[i][j] + b[i][j] for j in range(len(a[0]))] for i in range(len(a))]
+
+        @staticmethod
+        def subtract(a, b):
+            return [[a[i][j] - b[i][j] for j in range(len(a[0]))] for i in range(len(a))]
+
+        @staticmethod
+        def dot(a, b):
+            return [[sum(a[i][k] * b[k][j] for k in range(len(a))) 
+                     for j in range(len(b[0]))] 
+                     for i in range(len(a))]
 
     np = _NumpyFallback()
 
 
-#This is a program for the trace of a 2x2 matrix.
-def trace_matrix(matrix):
-    matrix = np.array([[float(input("Enter the element at position (1,1): ")), float(input("Enter the element at position (1,2): "))],
-                   [float(input("Enter the element at position (2,1): ")), float(input("Enter the element at position (2,2): "))]])
-    print(f"The matrix is:\n{matrix}")
+# ------------------------------
+#     MATRIX PRINTING
+# ------------------------------
+
+def print_matrix(matrix):
+    """Prints a matrix line by line."""
+    for row in matrix:
+        print(row)
+
+
+# ------------------------------
+#     INPUT UTILITIES
+# ------------------------------
+
+def read_matrix(n):
+    """Reads an n×n matrix from user input."""
+    matrix = []
+    for i in range(n):
+        row = []
+        for j in range(n):
+            value = float(input(f"Enter element ({i+1},{j+1}): "))
+            row.append(value)
+        matrix.append(row)
+    return np.array(matrix)
+
+
+# ------------------------------
+#     MATRIX OPERATIONS
+# ------------------------------
+
+def trace_matrix(n):
+    matrix = read_matrix(n)
+    print("Matrix:")
+    print_matrix(matrix)
     return np.trace(matrix)
 
-#This is a program for the trace of a 3x3 matrix.
-def trace_matrix_3x3(matrix):
-    matrix = np.array([[float(input("Enter the element at position (1,1): ")), float(input("Enter the element at position (1,2): ")), float(input("Enter the element at position (1,3): "))],
-                   [float(input("Enter the element at position (2,1): ")), float(input("Enter the element at position (2,2): ")), float(input("Enter the element at position (2,3): "))],
-                   [float(input("Enter the element at position (3,1): ")), float(input("Enter the element at position (3,2): ")), float(input("Enter the element at position (3,3): "))]])
-    print(f"The matrix is:\n{matrix}")
-    return np.trace(matrix)
 
-#This program addition of two 2x2 matrices.
-def add_matrices(matrix1, matrix2):
-    matrix1 = np.array([[float(input("Enter the element at position (1,1) of the first matrix: ")), float(input("Enter the element at position (1,2) of the first matrix: "))],
-                   [float(input("Enter the element at position (2,1) of the first matrix: ")), float(input("Enter the element at position (2,2) of the first matrix: "))]])
-    matrix2 = np.array([[float(input("Enter the element at position (1,1) of the second matrix: ")), float(input("Enter the element at position (1,2) of the second matrix: "))],
-                   [float(input("Enter the element at position (2,1) of the second matrix: ")), float(input("Enter the element at position (2,2) of the second matrix: "))]])
-    print(f"The first matrix is:\n{matrix1}")
-    print(f"The second matrix is:\n{matrix2}")
-    return np.add(matrix1, matrix2)
+def add_matrices(n):
+    print("Enter first matrix:")
+    m1 = read_matrix(n)
+    print("Enter second matrix:")
+    m2 = read_matrix(n)
 
-#This program addition of two 3x3 matrix.
-def add_matrices_3x3(matrix1, matrix2):
-    matrix1 = np.array([[float(input("Enter the element at position (1,1) of the first matrix: ")), float(input("Enter the element at position (1,2) of the first matrix: ")), float(input("Enter the element at position (1,3) of the first matrix: "))],
-                   [float(input("Enter the element at position (2,1) of the first matrix: ")), float(input("Enter the element at position (2,2) of the first matrix: ")), float(input("Enter the element at position (2,3) of the first matrix: "))],
-                   [float(input("Enter the element at position (3,1) of the first matrix: ")), float(input("Enter the element at position (3,2) of the first matrix: ")), float(input("Enter the element at position (3,3) of the first matrix: "))]])
-    matrix2 = np.array([[float(input("Enter the element at position (1,1) of the second matrix: ")), float(input("Enter the element at position (1,2) of the second matrix: ")), float(input("Enter the element at position (1,3) of the second matrix: "))],
-                   [float(input("Enter the element at position (2,1) of the second matrix: ")), float(input("Enter the element at position (2,2) of the second matrix: ")), float(input("Enter the element at position (2,3) of the second matrix: "))],
-                   [float(input("Enter the element at position (3,1) of the second matrix: ")), float(input("Enter the element at position (3,2) of the second matrix: ")), float(input("Enter the element at position (3,3) of the second matrix: "))]])
-    print(f"The first matrix is:\n{matrix1}")
-    print(f"The second matrix is:\n{matrix2}")
-    return np.add(matrix1, matrix2)
+    print("First matrix:")
+    print_matrix(m1)
+    print("Second matrix:")
+    print_matrix(m2)
 
-#This program subtraction of two 2x2 matrices.
-def subtract_matrices(matrix1, matrix2):
-    matrix1 = np.array([[float(input("Enter the element at position (1,1) of the first matrix: ")), float(input("Enter the element at position (1,2) of the first matrix: "))],
-                   [float(input("Enter the element at position (2,1) of the first matrix: ")), float(input("Enter the element at position (2,2) of the first matrix: "))]])
-    matrix2 = np.array([[float(input("Enter the element at position (1,1) of the second matrix: ")), float(input("Enter the element at position (1,2) of the second matrix: "))],
-                   [float(input("Enter the element at position (2,1) of the second matrix: ")), float(input("Enter the element at position (2,2) of the second matrix: "))]])
-    print(f"The first matrix is:\n{matrix1}")
-    print(f"The second matrix is:\n{matrix2}")
-    return np.subtract(matrix1, matrix2)    
+    return np.add(m1, m2)
+
+
+def subtract_matrices(n):
+    print("Enter first matrix:")
+    m1 = read_matrix(n)
+    print("Enter second matrix:")
+    m2 = read_matrix(n)
+
+    print("First matrix:")
+    print_matrix(m1)
+    print("Second matrix:")
+    print_matrix(m2)
+
+    return np.subtract(m1, m2)
+
+
+def multiply_matrices(n):
+    print("Enter first matrix:")
+    m1 = read_matrix(n)
+    print("Enter second matrix:")
+    m2 = read_matrix(n)
+
+    print("First matrix:")
+    print_matrix(m1)
+    print("Second matrix:")
+    print_matrix(m2)
+
+    return np.dot(m1, m2)
+
+
+# ------------------------------
+#     MENU
+# ------------------------------
+
+def main():
+    print("Matrix Calculator")
+    print("1. Trace")
+    print("2. Addition")
+    print("3. Subtraction")
+    print("4. Multiplication")
+
+    choice = int(input("Choose an operation: "))
+    size = int(input("Matrix size (2 or 3): "))
+
+    if choice == 1:
+        result = trace_matrix(size)
+    elif choice == 2:
+        result = add_matrices(size)
+    elif choice == 3:
+        result = subtract_matrices(size)
+    elif choice == 4:
+        result = multiply_matrices(size)
+    else:
+        print("Invalid choice.")
+        return
+
+    print("Result:")
+    print_matrix(result)
+
+
+if __name__ == "__main__":
+    main()
