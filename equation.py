@@ -51,3 +51,56 @@ def equation_rational(a, b, c, d):
     else:
         return f"La solution de l'équation est: x = {-b/a} and x ≠ {-d/c}"
 
+#This program calculate the roots of irational equation of the form root^2(ax + b) = c
+def equation_irational(a, b, c):
+    coefficient1 = float(input("Entrer le coefficient de x du radical: "))
+    coefficient2 = float(input("Entrer le coefficient du term independant du radical: "))
+    coefficient3 = float(input("Entrer le coefficient du term independant hors radical: "))
+    a = coefficient1
+    b = coefficient2
+    c = coefficient3
+    sup_radical = c**2
+    c = sup_radical
+    solve = (c - b) / a 
+    return f"La solution de l'equation est : {solve}"
+
+#This is the main menu.
+def main():
+    while True:
+       print("\nEquation calculator.")
+       print("1.Equation lineaire(ax + b = 0).")
+       print("2.Equation du second degree(ax^2 + bx + c = 0).")
+       print("3.Equation rationnel(ax + b) / (cx + d) = 0.")
+       print("4.Equation irrationnel √(ax + b) = 0.")
+       print("5.Quitter.")
+
+       choice = int(input("Choisissez une option : "))
+
+       if choice == 1:
+           equation_linear()
+           continue
+
+       if choice == 2:
+           equation_second_degree()
+           continue
+
+       if choice == 3:
+           equation_rational()
+           continue
+
+       if choice == 4:
+           equation_irational()
+           continue
+
+       if choice == 5:
+            print("Programme terminer ! ")
+            break
+
+
+       print("Choix invalide !")
+
+          
+       
+
+
+
