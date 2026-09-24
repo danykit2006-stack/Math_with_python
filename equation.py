@@ -1,7 +1,7 @@
 
 
 #This program calculates the roots of the linear equation of the form ax + b = 0
-def equation_linear(a, b):
+def equation_linear():
     coefficient = float(input("Enter le coefficient de x: "))
     term_constant = float(input("Enter le terme constant: "))
     a = coefficient
@@ -15,7 +15,7 @@ def equation_linear(a, b):
         return f"La solution de l'équation est: x = {-b/a}"
 
 # This program calculates the roots of a second-degree equation of the form ax² + bx + c = 0
-def equation_second_degree(a, b, c):
+def equation_second_degree():
     coefficient1 = float(input("Enter le coefficient de x²: "))
     coefficient2 = float(input("Enter le coefficient de x: "))
     term_constant = float(input("Enter le terme constant: "))
@@ -34,7 +34,7 @@ def equation_second_degree(a, b, c):
         return "L'équation n'a pas de solution réelle."
        
 #This program calculates the roots of rational equations of the form (ax + b) / (cx + d) = 0
-def equation_rational(a, b, c, d):
+def equation_rational():
     coefficient1 = float(input("Enter le coefficient de x du numérateur: "))
     term_constant1 = float(input("Enter le terme constant du numérateur: "))
     coefficient2 = float(input("Enter le coefficient de x du dénominateur: "))
@@ -52,7 +52,7 @@ def equation_rational(a, b, c, d):
         return f"La solution de l'équation est: x = {-b/a} and x ≠ {-d/c}"
 
 #This program calculate the roots of irational equation of the form root^2(ax + b) = c
-def equation_irational(a, b, c):
+def equation_irational():
     coefficient1 = float(input("Entrer le coefficient de x du radical: "))
     coefficient2 = float(input("Entrer le coefficient du term independant du radical: "))
     coefficient3 = float(input("Entrer le coefficient du term independant hors radical: "))
@@ -67,40 +67,42 @@ def equation_irational(a, b, c):
 #This is the main menu.
 def main():
     while True:
-       print("\nEquation calculator.")
-       print("1.Equation lineaire(ax + b = 0).")
-       print("2.Equation du second degree(ax^2 + bx + c = 0).")
-       print("3.Equation rationnel(ax + b) / (cx + d) = 0.")
-       print("4.Equation irrationnel √(ax + b) = 0.")
-       print("5.Quitter.")
+        print("\nEquation calculator.")
+        print("1.Equation lineaire(ax + b = 0).")
+        print("2.Equation du second degree(ax^2 + bx + c = 0).")
+        print("3.Equation rationnel(ax + b) / (cx + d) = 0.")
+        print("4.Equation irrationnel √(ax + b) = 0.")
+        print("5.Quitter.")
 
-       choice = int(input("Choisissez une option : "))
+        choice = int(input("Choisissez une option : "))
 
-       if choice == 1:
-           equation_linear()
-           continue
+        if choice == 1:
+            print(equation_linear())
+            continue
 
-       if choice == 2:
-           equation_second_degree()
-           continue
+        if choice == 2:
+            print(equation_second_degree())
+            continue
 
-       if choice == 3:
-           equation_rational()
-           continue
+        if choice == 3:
+            print(equation_rational())
+            continue
 
-       if choice == 4:
-           equation_irational()
-           continue
+        if choice == 4:
+            print(equation_irational())
+            continue
 
-       if choice == 5:
+        if choice == 5:
             print("Programme terminer ! ")
             break
 
+        print("Choix invalide !")
 
-       print("Choix invalide !")
+if __name__ == "__main__":
+    main()
 
-          
-       
+
+
 
 
 
